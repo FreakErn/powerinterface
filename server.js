@@ -72,7 +72,7 @@ app.post('/logs.json', (req, res) => {
     }
     if (forwardRequests) {
       // forward request to logging1.powerrouter.com
-      axios.post('http://217.114.110.59/logs.json', req.body, { headers: { Host: 'logging1.powerrouter.com' }})
+      axios.post('http://logging1.powerrouter.com/events.json', req.body, { headers: { Host: 'logging1.powerrouter.com' }})
         .then((res) => {
           logPowerrouterResponse(res)
         })
@@ -91,7 +91,7 @@ app.post('/events.json', (req, res) => {
   logUnknownRequest(req)
   if (forwardRequests) {
     // forward request to logging1.powerrouter.com
-    axios.post('http://217.114.110.59/events.json', req.body, { headers: { Host: 'logging1.powerrouter.com' }})
+    axios.post('http://logging1.powerrouter.com/events.json', req.body, { headers: { Host: 'logging1.powerrouter.com' }})
       .then((axRes) => {
         res.type('json').status(axRes.status).send(axRes.data)
         logPowerrouterResponse(axRes)
